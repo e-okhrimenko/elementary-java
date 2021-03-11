@@ -5,7 +5,9 @@ public class ArrayStorage {
     Employee[] storage = new Employee[10000];
 
     void clear() {
-        for (int i = 0; i < size(); i++) storage[i] = null;
+        for (int i = 0; i < size(); i++) {
+            storage[i] = null;
+        }
     }
 
     void save(Employee employee) {
@@ -18,7 +20,9 @@ public class ArrayStorage {
 
     Employee get(String uuid) {
         for (int i = 0; i < size(); i++)
-            if (storage[i].uuid.equals(uuid)) return storage[i];
+            if (storage[i].uuid.equals(uuid)) {
+                return storage[i];
+            }
         System.out.println("Employee " + uuid + " - not found!");
         return null;
     }
@@ -59,8 +63,13 @@ public class ArrayStorage {
      */
     Employee[] getAll() {
         Employee[] getAll = new Employee[size()];
-        if (size() != 0) for (int i = 0; i < size(); i++) getAll[i] = storage[i];
-        else System.out.println("Employees are missing!");
+        if (size() != 0) {
+            for (int i = 0; i < size(); i++) {
+                getAll[i] = storage[i];
+            }
+        } else {
+            System.out.println("Employees are missing!");
+        }
         return getAll;
     }
 
