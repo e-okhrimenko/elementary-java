@@ -9,6 +9,7 @@ public class ArrayStorage {
 
     void clear() {
         Arrays.fill(storage, 0, size, null);
+        System.out.println("The store is cleared and empty.");
         size = 0;
     }
 
@@ -17,31 +18,43 @@ public class ArrayStorage {
             System.out.println("The array is full. Employee: " + employee + ", not added.");
             return;
         }
-        if (employee == null) {
+        if (employee.getUuid() == null) {
             System.out.println("Not added. Employee parameter is null.");
             return;
         }
+        for (int i = 0; i < size; i++) {
+            if (storage[i].getUuid().equals(employee.getUuid())) {
+                System.out.println("Employee with UUID: " + employee.getUuid() + ", not added. Employee has already been entered earlier.");
+                return;
+            }
+        }
         storage[size] = employee;
+        System.out.println("Employee " + employee + " - added!");
         size++;
     }
 
     Employee get(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid)) {
+            if (storage[i].getUuid().equals(uuid)) {
                 return storage[i];
             }
         }
-        System.out.println("Employee " + uuid + " - not found!");
         return null;
     }
 
     void delete(String uuid) {
+        int temp = size;
         for (int i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid)) {
+            if (storage[i].getUuid().equals(uuid)) {
                 storage[i] = storage[size - 1];
                 storage[size() - 1] = null;
                 size--;
             }
+        }
+        if (temp > size) {
+            System.out.println("Employee " + uuid + " DELETED!");
+        } else {
+            System.out.println("Employee NOT deleted. Employee: " + uuid + " - not found!");
         }
     }
 
