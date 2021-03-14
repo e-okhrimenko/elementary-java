@@ -1,14 +1,13 @@
 import java.util.Scanner;
 
 public class MainArray {
-    static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+    private static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
 
     public static void main(String[] args) {
         System.out.print("\nHello!");
         Scanner scanner = new Scanner(System.in);
         boolean repeat = true;
         while (repeat) {
-            Employee employee = new Employee();
             System.out.print("\n(list | save uuid | delete uuid | get uuid | size | clear | exit)" + "\n"
                     + "Enter one of the commands: ");
             String stringIn = scanner.nextLine();
@@ -45,7 +44,7 @@ public class MainArray {
                         printAll();
                         break;
                     case "save":
-                        employee.setUuid(result[1]);
+                        Employee employee = new Employee(result[1]);
                         ARRAY_STORAGE.save(employee);
                         printAll();
                         break;
@@ -82,7 +81,7 @@ public class MainArray {
         }
     }
 
-    static void printAll() {
+    private static void printAll() {
         System.out.println("List of employees (UUID): ");
         if ((ARRAY_STORAGE.size() == 0)) {
             System.out.println("No employees.");
